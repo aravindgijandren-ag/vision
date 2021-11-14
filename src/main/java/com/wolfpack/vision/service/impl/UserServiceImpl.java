@@ -1,5 +1,7 @@
 package com.wolfpack.vision.service.impl;
 
+import com.wolfpack.vision.helper.SignUpToVisionUserConv;
+import com.wolfpack.vision.model.SignUpDTO;
 import com.wolfpack.vision.persistance.document.Location;
 import com.wolfpack.vision.persistance.document.Venue;
 import com.wolfpack.vision.persistance.document.VisionUser;
@@ -28,6 +30,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private FourSquareRestService fourSquareRestService;
+
+    @Autowired private SignUpToVisionUserConv signUpToVisionUserConv;
 
 
     @Override
@@ -64,6 +68,9 @@ public class UserServiceImpl implements UserService {
             });
         });
         log.info("VENUE LIST: {}", venueList);
-         return venueList;
+        return venueList;
+    }
+    public VisionUser signUp(SignUpDTO signUpDTO) {
+        return visionUserRepo.save(signUpToVisionUserConv.convert(signUpDTO));
     }
 }
