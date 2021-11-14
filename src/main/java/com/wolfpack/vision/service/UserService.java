@@ -5,6 +5,6 @@ import com.wolfpack.vision.persistance.document.VisionUser;
 import java.util.Collection;
 
 public interface UserService {
-    String getRecommendations();
+    String getRecommendations(String radius, String section, String latitude, String longitude, String date);
     VisionUser findAll();
 }
