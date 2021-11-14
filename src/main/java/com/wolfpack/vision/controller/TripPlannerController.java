@@ -15,7 +15,8 @@ public class TripPlannerController {
                                        @RequestParam("longitude") String longitude,
                                        @RequestParam("startDate") String startDate,
                                        @RequestParam("endDate") String endDate){
-        return ResponseEntity.ok(tripPlannerService.planTrips(latitude, longitude, startDate, endDate));
+        tripPlannerService.planTrips(latitude, longitude, startDate, endDate);
+        return ResponseEntity.ok("Let's go home guys!");
     }
 
 }
