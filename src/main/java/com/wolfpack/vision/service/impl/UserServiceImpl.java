@@ -54,7 +54,6 @@ public class UserServiceImpl implements UserService {
         List<Venue> venueList = new ArrayList<>();
         JSONObject response = (JSONObject) jsonObject.get("response");
         JSONArray groups = (JSONArray) response.get("groups");
-        log.info("Group LIST: {}", groups);
         groups.stream().forEach(group -> {
             JSONObject groupJson = (JSONObject) group;
             JSONArray items = (JSONArray) groupJson.get("items");
@@ -73,7 +72,7 @@ public class UserServiceImpl implements UserService {
                 venueList.add(venue);
             });
         });
-        log.info("VENUE LIST: {}", venueList);
+        log.info("VENUE LIST: {}", venueList.size());
         return venueList;
     }
     public VisionUser signUp(SignUpDTO signUpDTO) {

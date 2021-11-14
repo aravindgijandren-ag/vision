@@ -61,6 +61,8 @@ public class InrixRestService {
                 .fromUriString(restUrl.getFindRouteEndpoint()).queryParams(queryParams);
         uriComponentsBuilder.encode(StandardCharsets.UTF_8);
 
+        log.info("Contacting inrix api");
+
         return restTemplateService.makeHttpRequest(null, headers, uriComponentsBuilder, HttpMethod.GET,
                 new ParameterizedTypeReference<InrixRouteOverviewDTO>() {
                 });
