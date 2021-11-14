@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String getRecommendations(){
-         return fourSquareRestService.getVenueRecommendations("250", "sights", "37.34783370332076", "-121.93128107414141", "20211113");
+    public String getRecommendations(String radius, String section, String latitude, String longitude, String date) {
+         return fourSquareRestService.getVenueRecommendations(radius, section, latitude, longitude, date);
     }
 }
