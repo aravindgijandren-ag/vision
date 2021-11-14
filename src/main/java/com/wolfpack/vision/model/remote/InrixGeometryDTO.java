@@ -15,5 +15,5 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class InrixGeometryDTO {
     private String type;
-    private List<Long> coordinates;
+    private List<List<Double>> coordinates;
 }

@@ -1,4 +1,4 @@
-package com.wolfpack.vision.model.remote;
+package com.wolfpack.vision.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -11,8 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class InrixRouteOverviewDTO {
-    private Integer statusId;
-    private String statusText;
-    private FindRouteRes result;
+public class VisitPlanOverviewDTO {
+    private Double averageSpeed,totalDistance,travelTimeMinutes;
 }

@@ -11,8 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class InrixRouteOverviewDTO {
-    private Integer statusId;
-    private String statusText;
-    private FindRouteRes result;
+public class FindRouteRes {
+    private InrixTripDTO trip;
 }

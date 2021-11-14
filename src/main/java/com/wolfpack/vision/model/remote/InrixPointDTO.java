@@ -15,5 +15,5 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class InrixPointDTO {
     private String type;
-    private List<Double> coordinates;
+    private List<List<Double>> coordinates;
 }

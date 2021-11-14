@@ -1,8 +1,11 @@
 package com.wolfpack.vision.service.impl;
 
-import com.wolfpack.vision.model.InterestDTO;
+import com.wolfpack.vision.model.*;
+import com.wolfpack.vision.model.remote.InrixRouteDetail;
+import com.wolfpack.vision.model.remote.InrixRouteOverviewDTO;
 import com.wolfpack.vision.persistance.document.Venue;
 import com.wolfpack.vision.persistance.document.VisionUser;
+import com.wolfpack.vision.rest.InrixRestService;
 import com.wolfpack.vision.service.TripPlannerService;
 import com.wolfpack.vision.service.UserService;
 import com.google.common.collect.Multimaps;
@@ -21,14 +24,10 @@ import java.util.stream.Collectors;
 public class TripPlannerServiceImpl implements TripPlannerService {
 
     @Autowired private UserService userService;
+    @Autowired private InrixRestService inrixRestService;
 
     @Override
-    public Collection<?> planTrips(String emailId, String lat, String lng, String startDate, String endDate) throws ParseException {
-        //call four square api and get payload
-        // make req to ingrix with list[lat, lng]
-        /*Multimap<Integer, VendorSkuSetMapModel> allVendorSkuSetMapMultipMap = Multimaps.index(vendorSkuSetMapModels,
-                item -> item.getSkuSetConfiguration().getSku().getId());*/
-
+    public InrixRouteOverviewDTO planTrips(String emailId, String lat, String lng, String startDate, String endDate) throws ParseException, IllegalAccessException {
         VisionUser visionUser = userService.findUser(emailId);
         List<InterestDTO> interestDTO = visionUser.getInterest();
         List<String> interests = interestDTO.stream().map(InterestDTO::getName).collect(Collectors.toList());
@@ -39,7 +38,16 @@ public class TripPlannerServiceImpl implements TripPlannerService {
             venuesCollection.addAll(venues);
         }
 
-        return null;
+        FindRouteRequestDTO requestDTO = FindRouteRequestDTO.builder()
+                .queryParamDTO(FindRouteQueryParamDTO.builder()
+                        .isAmbiguousOrigin(true)
+                        .routeOutputFields("B,M,P,S,W")
+                        .maxAlternates(2)
+                        .format("json")
+                        .build())
+                .venueList(venuesCollection).build();
+
+        return inrixRestService.getRouteDetails(requestDTO);
     }
 
 

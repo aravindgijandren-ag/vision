@@ -18,7 +18,7 @@ public class TripPlannerController {
                                        @RequestParam("longitude") String longitude,
                                        @RequestParam("startDate") String startDate,
                                        @RequestParam("endDate") String endDate,
-                                       @RequestParam("emailId") String emailId) throws ParseException {
+                                       @RequestParam("emailId") String emailId) throws ParseException, IllegalAccessException {
         return ResponseEntity.ok(tripPlannerService.planTrips(emailId, latitude, longitude, startDate, endDate));
     }
 
