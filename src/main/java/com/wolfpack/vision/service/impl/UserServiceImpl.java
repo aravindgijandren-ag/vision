@@ -6,15 +6,14 @@ import com.wolfpack.vision.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-
 @Service
 public class UserServiceImpl implements UserService {
 
     @Autowired private VisionUserRepo visionUserRepo;
 
     @Override
-    public Collection<?> findAll() {
-        return visionUserRepo.findAll();
+    public VisionUser findAll() {
+        System.out.println("HI");
+        return visionUserRepo.findById("6190586de05cb28b5c8addf5").get();
     }
 }
