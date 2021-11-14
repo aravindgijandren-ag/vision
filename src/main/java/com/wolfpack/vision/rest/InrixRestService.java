@@ -20,7 +20,7 @@ public class InrixRestService {
 
     public void getApplicationToken(){
         HttpHeaders headers = new RestClientHelper().build();
-        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromUriString(restUrl.getFourSquarePlaceApiEndPoint());
+        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromUriString(restUrl.getApplicationTokenApiEndPoint());
         uriComponentsBuilder.queryParam("appId", "hrfi4fcnp1");
         uriComponentsBuilder.queryParam("hashToken", "aHJmaTRmY25wMXxIYkhXTUNhY3lMOXVhRkMwdldIRzl5bWs3cW9qY3M2Mmptd3YyVXNm");
         InrixAuthDTO response = restTemplateService.makeHttpRequest(null, headers, uriComponentsBuilder, HttpMethod.GET,
