@@ -43,7 +43,6 @@ public class FourSquareRestService {
         uriComponentsBuilder.encode(StandardCharsets.UTF_8);
         String response = restTemplateService.makeHttpRequest(null, headers, uriComponentsBuilder, HttpMethod.GET,
                 String.class);
-        log.info("VENUE RESPONSE: {}", response);
         return response;
     }
 }
