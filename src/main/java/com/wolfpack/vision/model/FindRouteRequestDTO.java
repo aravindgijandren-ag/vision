@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.PriorityQueue;
 
 @Data
 @Builder
@@ -16,5 +17,5 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class FindRouteRequestDTO {
     private FindRouteQueryParamDTO queryParamDTO;
-    private List<Venue> venueList;
+    private PriorityQueue<Venue> venues;
 }

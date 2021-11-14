@@ -17,6 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.PriorityQueue;
 import java.util.stream.Collectors;
 
 @Service
@@ -45,16 +46,12 @@ public class InrixRestService {
         final MultiValueMap<String, String> queryParams = QueryParamUtil
                 .buildQueryParams(findRouteRequestDTO.getQueryParamDTO());
 
-        List<Venue> venueList = findRouteRequestDTO.getVenueList();
+        PriorityQueue<Venue> venues = findRouteRequestDTO.getVenues();
 
-        List<String> geo_codings = venueList.stream()
-                .map(v -> v.getLocation().getLatitude() + ", "+v.getLocation().getLongitude())
-                .collect(Collectors.toList());
-
-        int counter = 1;
-        for(String location_identifier : geo_codings){
-            if(counter > 9)
-                break;
+        int counter=1;
+        while(!venues.isEmpty() && counter < 4){
+            Venue venue = venues.poll();
+            String location_identifier =venue.getLocation().getLatitude() + ", "+ venue.getLocation().getLongitude();
             String wayPoint = "wp_" + counter;
             queryParams.add(wayPoint, location_identifier);
             counter++;

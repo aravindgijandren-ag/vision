@@ -44,7 +44,7 @@ public class TripPlannerServiceImpl implements TripPlannerService {
                 v.setScore(score);
                 minHeap.add(v);
             }
-            //venuesCollection.addAll(venues);
+            venuesCollection.addAll(venues);
         }
 
         FindRouteRequestDTO requestDTO = FindRouteRequestDTO.builder()
@@ -54,7 +54,7 @@ public class TripPlannerServiceImpl implements TripPlannerService {
                         .maxAlternates(2)
                         .format("json")
                         .build())
-                .venueList(venuesCollection).build();
+                .venues(minHeap).build();
 
         return inrixRestService.getRouteDetails(requestDTO);
     }
