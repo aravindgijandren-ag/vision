@@ -1,5 +1,7 @@
 package com.wolfpack.vision.service.impl;
 
+import com.wolfpack.vision.helper.SignUpToVisionUserConv;
+import com.wolfpack.vision.model.SignUpDTO;
 import com.wolfpack.vision.persistance.document.VisionUser;
 import com.wolfpack.vision.persistance.repository.VisionUserRepo;
 import com.wolfpack.vision.rest.FourSquareRestService;
@@ -18,6 +20,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private FourSquareRestService fourSquareRestService;
 
+    @Autowired private SignUpToVisionUserConv signUpToVisionUserConv;
+
 
     @Override
     public VisionUser findAll() {
@@ -26,6 +30,11 @@ public class UserServiceImpl implements UserService {
         inrixRestService.getApplicationToken();
 
         return visionUserRepo.findById("6190586de05cb28b5c8addf5").get();
+    }
+
+    @Override
+    public VisionUser signUp(SignUpDTO signUpDTO) {
+        return visionUserRepo.save(signUpToVisionUserConv.convert(signUpDTO));
     }
 
     @Override
