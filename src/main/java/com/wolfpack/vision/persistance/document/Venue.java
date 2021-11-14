@@ -17,4 +17,5 @@ import java.util.List;
 public class Venue {
     private String name;
     private Location location;
+    private int score;
 }

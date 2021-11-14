@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.PriorityQueue;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,12 +32,20 @@ public class TripPlannerServiceImpl implements TripPlannerService {
 
         VisionUser visionUser = userService.findUser(emailId);
         List<InterestDTO> interestDTO = visionUser.getInterest();
-        List<String> interests = interestDTO.stream().map(InterestDTO::getName).collect(Collectors.toList());
+
+
+        PriorityQueue<Venue> minHeap = new PriorityQueue<>(10,(a, b) -> Integer.compare(a.getScore(),b.getScore()));
 
         List<Venue> venuesCollection = new ArrayList<>();
-        for(String section : interests){
-            List<Venue> venues = userService.getRecommendations("100000", section, lat, lng, startDate.replaceAll("-",""));
-            venuesCollection.addAll(venues);
+        for(InterestDTO dto : interestDTO){
+            int rating = dto.getRatings();
+            List<Venue> venues = userService.getRecommendations("100000", dto.getName(), lat, lng, startDate.replaceAll("-",""));
+            for(Venue v : venues){
+                int score = (int) ((0.6*rating) + (0.4*v.getLocation().getDistance()));
+                v.setScore(score);
+                minHeap.add(v);
+            }
+            //venuesCollection.addAll(venues);
         }
 
         return null;
