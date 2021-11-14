@@ -33,4 +33,8 @@ public class InrixRestService {
         log.info("hello");
     }
 
+    public void getRouteDetails(){
+        //InrixRouteOverviewDTO
+    }
+
 }

@@ -10,12 +10,11 @@ public class TripPlannerController {
 
     @Autowired private TripPlannerService tripPlannerService;
 
-    @RequestMapping(value = "/" , method = RequestMethod.POST)
-    public ResponseEntity<?> planTrips(@RequestParam("latitude") long latitude,
-                                       @RequestParam("longitude") long longitude,
+    @RequestMapping(value = "/trip/plan" , method = RequestMethod.GET)
+    public ResponseEntity<?> planTrips(@RequestParam("latitude") String latitude,
+                                       @RequestParam("longitude") String longitude,
                                        @RequestParam("startDate") String startDate,
                                        @RequestParam("endDate") String endDate){
-
         return ResponseEntity.ok(tripPlannerService.planTrips(latitude, longitude, startDate, endDate));
     }
 
