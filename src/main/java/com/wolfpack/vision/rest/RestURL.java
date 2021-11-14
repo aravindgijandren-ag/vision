@@ -5,9 +5,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class RestURL {
 
-    private static final String INGRIX_BASE_URL = "https://api.iq.inrix.com";
+    private static final String INRIX_BASE_URL = "https://api.iq.inrix.com";
+    private static final String INRIX_APP_TOKEN = "/auth/v1/appToken";
+    private static final String INRIX_FIND_ROUTE = "https://na-api.inrix.com/Traffic/Inrix.ashx?Action=FindRoute";
 
-    private static final String INGRIX_APP_TOKEN = "/auth/v1/appToken";
 
     private static final String FOUR_SQUARE_BASE_URL = "https://api.foursquare.com";
 
@@ -19,11 +20,15 @@ public class RestURL {
     }
 
     public String getApplicationTokenApiEndPoint(){
-        return INGRIX_BASE_URL + INGRIX_APP_TOKEN;
+        return INRIX_BASE_URL + INRIX_APP_TOKEN;
     }
 
     public String getFourSquareVenuesApiEndpoint() {
         return FOUR_SQUARE_BASE_URL + FOUR_SQUARE_VENUE_URL;
+    }
+
+    public String getFindRouteEndpoint(){
+        return INRIX_FIND_ROUTE;
     }
 
 }

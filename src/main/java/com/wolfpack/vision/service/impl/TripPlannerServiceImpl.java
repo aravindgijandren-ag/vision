@@ -12,6 +12,8 @@ public class TripPlannerServiceImpl implements TripPlannerService {
 
     @Override
     public Collection<?> planTrips(long lat, long lng, String startDate, String endDate) {
+        //call four square api and get payload
+        // make req to ingrix with list[lat, lng]
         return null;
     }
 }
