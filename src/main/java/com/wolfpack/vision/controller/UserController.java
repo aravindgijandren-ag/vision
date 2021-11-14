@@ -16,18 +16,17 @@ import java.util.Objects;
 
 @RestController
 @Slf4j
+@CrossOrigin(origins = "*")
 public class UserController {
 
     @Autowired private UserService userService;
 
-    @CrossOrigin(origins = "*")
     @PostMapping("/signup")
     public ResponseEntity<?> signUp(@RequestBody SignUpDTO signUpDTO){
         return ResponseEntity.ok(userService.signUp(signUpDTO));
     }
 
     @PostMapping("/login")
-    @CrossOrigin(origins = "*")
     public ResponseEntity<?> login(@RequestBody SignUpDTO signUpDTO){
         VisionUser visionUser = userService.login(signUpDTO);
         if(Objects.nonNull(visionUser))
