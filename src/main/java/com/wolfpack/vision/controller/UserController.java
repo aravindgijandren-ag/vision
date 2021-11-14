@@ -4,17 +4,14 @@ import com.wolfpack.vision.model.SignUpDTO;
 import com.wolfpack.vision.persistance.document.Venue;
 import com.wolfpack.vision.persistance.document.VisionUser;
 import com.wolfpack.vision.service.UserService;
-
 import lombok.extern.slf4j.Slf4j;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Objects;
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -22,6 +19,7 @@ public class UserController {
 
     @Autowired private UserService userService;
 
+    @CrossOrigin(origins = "*")
     @PostMapping("/signup")
     public String signUp(@RequestBody SignUpDTO signUpDTO){
         //System.out.println(userService.findAll());
@@ -38,13 +36,13 @@ public class UserController {
     }
 
     @GetMapping("/getRecommendations")
-    public String getreco() throws ParseException {
-        JSONParser jsonParser = new JSONParser();
-        String venues = userService.getRecommendations();
-        JSONObject jsonObject = (JSONObject) jsonParser.parse(venues);
-        Venue venue = new Venue();
-        JSONObject response = (JSONObject) jsonObject.get("response");
-        return null;
+    public List<Venue> getreco(@RequestParam(name = "radius") String radius,
+                               @RequestParam(name = "section") String section,
+                               @RequestParam(name = "latitude") String latitude,
+                               @RequestParam(name = "longitude") String longitude,
+                               @RequestParam(name = "date") String date) throws ParseException {
+
+        return userService.getRecommendations(radius, section, latitude, longitude, date);
     }
 
 
