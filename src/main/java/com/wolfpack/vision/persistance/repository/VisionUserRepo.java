@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface VisionUserRepo extends MongoRepository<VisionUser, String> {
     List<VisionUser> findAll();
+
 }
