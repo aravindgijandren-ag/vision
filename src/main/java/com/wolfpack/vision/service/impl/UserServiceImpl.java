@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @Slf4j
@@ -72,5 +73,16 @@ public class UserServiceImpl implements UserService {
     }
     public VisionUser signUp(SignUpDTO signUpDTO) {
         return visionUserRepo.save(signUpToVisionUserConv.convert(signUpDTO));
+    }
+
+    @Override
+    public VisionUser login(SignUpDTO signUpDTO){
+        String email = signUpDTO.getEmail();
+        String password = signUpDTO.getPassword();
+        VisionUser visionUser = visionUserRepo.findOneByEmailId(email);
+        if(Objects.nonNull(visionUser) && visionUser.getPassword().equals(password)){
+            return visionUser;
+        }
+        return null;
     }
 }

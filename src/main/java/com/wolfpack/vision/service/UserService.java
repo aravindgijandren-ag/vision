@@ -11,4 +11,5 @@ public interface UserService {
     List<Venue> getRecommendations(String radius, String section, String latitude, String longitude, String date) throws ParseException;
     VisionUser findAll();
     VisionUser signUp(SignUpDTO signUpDTO);
+    VisionUser login(SignUpDTO signUpDTO);
 }
