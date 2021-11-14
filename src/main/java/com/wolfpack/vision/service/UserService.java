@@ -7,4 +7,5 @@ public interface UserService {
     String getRecommendations();
     VisionUser findAll();
     VisionUser signUp(SignUpDTO signUpDTO);
+    VisionUser login(SignUpDTO signUpDTO);
 }
