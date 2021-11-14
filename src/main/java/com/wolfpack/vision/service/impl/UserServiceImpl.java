@@ -79,10 +79,15 @@ public class UserServiceImpl implements UserService {
     public VisionUser login(SignUpDTO signUpDTO){
         String email = signUpDTO.getEmail();
         String password = signUpDTO.getPassword();
-        VisionUser visionUser = visionUserRepo.findOneByEmailId(email);
+        VisionUser visionUser = findUser(email);
         if(Objects.nonNull(visionUser) && visionUser.getPassword().equals(password)){
             return visionUser;
         }
         return null;
+    }
+
+    @Override
+    public VisionUser findUser(String emailId) {
+        return visionUserRepo.findOneByEmailId(emailId);
     }
 }

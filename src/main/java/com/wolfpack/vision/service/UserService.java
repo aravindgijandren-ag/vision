@@ -12,4 +12,5 @@ public interface UserService {
     VisionUser findAll();
     VisionUser signUp(SignUpDTO signUpDTO);
     VisionUser login(SignUpDTO signUpDTO);
+    VisionUser findUser(String emailId);
 }

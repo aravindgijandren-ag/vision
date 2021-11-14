@@ -7,11 +7,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class TripPlannerController {
 
     @Autowired private TripPlannerService tripPlannerService;
 
-    @CrossOrigin(origins = "*")
+
     @RequestMapping(value = "/trip/plan" , method = RequestMethod.GET)
     public ResponseEntity<?> planTrips(@RequestParam("latitude") String latitude,
                                        @RequestParam("longitude") String longitude,
