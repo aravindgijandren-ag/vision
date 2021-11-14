@@ -1,0 +1,10 @@
+spring:
+    data.mongodb:
+        database: vision
+        #field-naming-strategy= # Fully qualified name of the FieldNamingStrategy to use.
+        #grid-fs-database= # GridFS database name.
+        host: 18.218.54.255 # Mongo server host.
+        #uri: mongodb://18.218.54.255:27017/vision
+        #username: ninja_notification
+        #password: 4FrK25KpgbFDuQqf3R
+        port: 27017
