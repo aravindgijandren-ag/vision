@@ -1,24 +1,22 @@
 package com.wolfpack.vision.service.impl;
 
-import com.wolfpack.vision.model.*;
-import com.wolfpack.vision.model.remote.InrixRouteDetail;
+import com.wolfpack.vision.model.FindRouteQueryParamDTO;
+import com.wolfpack.vision.model.FindRouteRequestDTO;
+import com.wolfpack.vision.model.InterestDTO;
 import com.wolfpack.vision.model.remote.InrixRouteOverviewDTO;
 import com.wolfpack.vision.persistance.document.Venue;
 import com.wolfpack.vision.persistance.document.VisionUser;
 import com.wolfpack.vision.rest.InrixRestService;
 import com.wolfpack.vision.service.TripPlannerService;
 import com.wolfpack.vision.service.UserService;
-import com.google.common.collect.Multimaps;
 import lombok.extern.log4j.Log4j2;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.PriorityQueue;
-import java.util.stream.Collectors;
 
 @Service
 @Log4j2
