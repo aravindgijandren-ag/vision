@@ -10,4 +10,6 @@ public class VisionApplication {
 		SpringApplication.run(VisionApplication.class, args);
 	}
 
+
+
 }

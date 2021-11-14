@@ -8,3 +8,7 @@ spring:
         #username: ninja_notification
         #password: 4FrK25KpgbFDuQqf3R
         port: 27017
+
+logging:
+    level:
+        org.springframework.data.mongodb.core.MongoTemplate: ERROR
