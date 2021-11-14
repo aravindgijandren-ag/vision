@@ -5,5 +5,5 @@ import org.json.simple.parser.ParseException;
 import java.util.Collection;
 
 public interface TripPlannerService {
-    Collection<?> planTrips(String lat, String lng, String startDate, String endDate) throws ParseException;
+    Collection<?> planTrips(String emailId, String lat, String lng, String startDate, String endDate) throws ParseException;
 }

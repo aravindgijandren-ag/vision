@@ -16,10 +16,10 @@ public class TripPlannerServiceImpl implements TripPlannerService {
     @Autowired private UserService userService;
 
     @Override
-    public Collection<?> planTrips(String lat, String lng, String startDate, String endDate) throws ParseException {
+    public Collection<?> planTrips(String emailId, String lat, String lng, String startDate, String endDate) throws ParseException {
         //call four square api and get payload
         // make req to ingrix with list[lat, lng]
-        userService.getRecommendations("50","",lat,lng,startDate);
+        userService.getRecommendations("50","", lat, lng, startDate);
         return null;
     }
 }
