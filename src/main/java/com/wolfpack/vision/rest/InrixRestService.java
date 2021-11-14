@@ -9,6 +9,9 @@ import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+
 @Service
 @Slf4j
 public class InrixRestService {
@@ -23,6 +26,7 @@ public class InrixRestService {
         UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromUriString(restUrl.getFourSquarePlaceApiEndPoint());
         uriComponentsBuilder.queryParam("appId", "hrfi4fcnp1");
         uriComponentsBuilder.queryParam("hashToken", "aHJmaTRmY25wMXxIYkhXTUNhY3lMOXVhRkMwdldIRzl5bWs3cW9qY3M2Mmptd3YyVXNm");
+
         InrixAuthDTO response = restTemplateService.makeHttpRequest(null, headers, uriComponentsBuilder, HttpMethod.GET,
                 new ParameterizedTypeReference<InrixAuthDTO>() {
                 });
