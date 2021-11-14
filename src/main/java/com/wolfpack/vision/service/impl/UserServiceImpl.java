@@ -1,6 +1,7 @@
 package com.wolfpack.vision.service.impl;
 
 import com.wolfpack.vision.helper.SignUpToVisionUserConv;
+import com.wolfpack.vision.model.InterestDTO;
 import com.wolfpack.vision.model.SignUpDTO;
 import com.wolfpack.vision.persistance.document.Location;
 import com.wolfpack.vision.persistance.document.Venue;
@@ -20,10 +21,12 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.PriorityQueue;
 
 @Service
 @Slf4j
 public class UserServiceImpl implements UserService {
+    Location location1 = new Location();
 
     @Autowired private VisionUserRepo visionUserRepo;
 
@@ -44,6 +47,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<Venue> getRecommendations(String radius, String section, String latitude, String longitude, String date) throws ParseException {
+
         String venues = fourSquareRestService.getVenueRecommendations(radius, section, latitude, longitude, date);
         JSONParser jsonParser = new JSONParser();
         JSONObject jsonObject = (JSONObject) jsonParser.parse(venues);
@@ -64,6 +68,7 @@ public class UserServiceImpl implements UserService {
                 location.setLongitude(String.valueOf(locationJson.get("lng")));
                 location.setLatitude(String.valueOf(locationJson.get("lat")));
                 location.setDistance(Double.parseDouble(String.valueOf(locationJson.get("distance"))));
+                //location1.setDistance(Double.parseDouble(String.valueOf(locationJson.get("distance"))));
                 venue.setLocation(location);
                 venueList.add(venue);
             });
@@ -90,4 +95,5 @@ public class UserServiceImpl implements UserService {
     public VisionUser findUser(String emailId) {
         return visionUserRepo.findOneByEmailId(emailId);
     }
+
 }

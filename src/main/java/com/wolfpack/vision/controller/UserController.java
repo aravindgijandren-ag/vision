@@ -44,6 +44,4 @@ public class UserController {
         return userService.getRecommendations(radius, section, latitude, longitude, date);
     }
 
-
-
 }
